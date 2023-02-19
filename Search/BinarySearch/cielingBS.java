@@ -1,6 +1,6 @@
-package BinarySearch;
+package Search.BinarySearch;
 
-public class cielingBS{
+public class cielingBS {
   public static void main(String[] args) {
     int[] arr = { 1, 4, 6, 7, 9, 10, 12 };
     int target = 5;
