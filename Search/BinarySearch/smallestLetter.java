@@ -1,14 +1,14 @@
 package Search.BinarySearch;
 
 public class smallestLetter {
-  public static void main(char[] args) {
+  public static void main(String[] args) {
     char[] arr = { 'c', 'f', 'j' };
-    char target = 'a';
-    System.out.println(cieling(arr, target));
+    char target = 'c';
+    System.out.println(small(arr, target));
 
   }
 
-  static String cieling(char[] arr, char target) {
+  static char small(char[] arr, char target) {
     int start = 0;
     int end = arr.length - 1;
     while (start <= end) {
