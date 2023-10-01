@@ -1,5 +1,6 @@
 { pkgs }: {
     deps = [
+        pkgs.azure-functions-core-tools
         pkgs.graalvm17-ce
         pkgs.maven
         pkgs.replitPackages.jdt-language-server
