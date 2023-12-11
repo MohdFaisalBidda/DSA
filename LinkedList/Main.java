@@ -19,6 +19,7 @@ public class Main{
     System.out.println("Node deleted with value: "+list.delete(2));
     list.display(); 
   */
+    /*
     DLL list =new DLL();
     list.insertFirst(4);
     list.insertFirst(7);
@@ -26,7 +27,14 @@ public class Main{
     list.insertFirst(19);
     list.insertFirst(27);
     list.insertLast(33);
+    */
+   CLL list = new CLL();
+    list.insert(8);
+    list.insert(25);
+    list.insert(10);
+    list.insert(20);
     list.display();
-  // list.displayReverse();
+  
+   //list.displayReverse();
   }
 }
