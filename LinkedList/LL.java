@@ -83,7 +83,7 @@ public class LL {
     System.out.println("End");
   }
 
-  // Recusrively inserting elements to index
+  // Ques: Recusrively inserting elements to index
   public void insertRec(int val, int index) {
     head = insertRec(val, index, head);
   }
@@ -98,7 +98,7 @@ public class LL {
     return node;
   }
 
-  // Questions 1.Remove Duplicates from Sorted List
+  // Ques 1.Remove Duplicates from Sorted List
   public void duplicates() {
     Node node = head;
     while (node.next != null) {
@@ -112,6 +112,50 @@ public class LL {
 
     tail = node;
     tail.next = null;
+  }
+
+  // Question 2. Merge two linked list
+  public static LL mergeLL(LL first, LL second) {
+    Node f = first.head;
+    Node s = second.head;
+
+    LL ans = new LL();
+    while (f.next != null && s.next != null) {
+      if (f.value < s.value) {
+        ans.insertLast(f.value);
+        f = f.next;
+      } else {
+        ans.insertLast(s.value);
+        s = s.next;
+      }
+    }
+
+    while (f != null) {
+      ans.insertLast(f.value);
+      f = f.next;
+    }
+
+    while (s != null) {
+      ans.insertLast(s.value);
+      s = s.next;
+    }
+    return ans;
+  }
+
+  // Ques 3. LinkedList cycle
+  // Slow and Fast pointer Approach
+  public static boolean cycleLL(Node head){
+    Node slow = head;
+    Node fast = head;
+
+    while(fast != null && fast.next != null){
+      slow = slow.next;
+      fast =fast.next.next;
+      if(slow == fast){
+        return true;
+      }
+    }
+    return false;
   }
 
   private class Node {
@@ -129,16 +173,30 @@ public class LL {
   }
 
   public static void main(String[] args) {
-    LL list = new LL();
-    list.insertLast(1);
-    list.insertLast(1);
-    list.insertLast(2);
-    list.insertLast(3);
-    list.insertLast(3);
-    list.insertLast(3);
+    // LL list = new LL();
+    // list.insertLast(1);
+    // list.insertLast(1);
+    // list.insertLast(2);
+    // list.insertLast(3);
+    // list.insertLast(3);
+    // list.insertLast(3);
 
-    list.display();
-    list.duplicates();
-    list.display();
+    // list.display();
+    // list.duplicates();
+    // list.display();
+    LL first = new LL();
+    LL second = new LL();
+
+    first.insertLast(1);
+    first.insertLast(3);
+    first.insertLast(5);
+
+    second.insertLast(1);
+    second.insertLast(2);
+    second.insertLast(9);
+    second.insertLast(14);
+
+    LL ans = mergeLL(first, second);
+    ans.display();
   }
 }
