@@ -142,23 +142,7 @@ public class LL {
     return ans;
   }
 
-  // Ques 3. LinkedList cycle
-  // Slow and Fast pointer Approach
-  public static boolean cycleLL(Node head){
-    Node slow = head;
-    Node fast = head;
-
-    while(fast != null && fast.next != null){
-      slow = slow.next;
-      fast =fast.next.next;
-      if(slow == fast){
-        return true;
-      }
-    }
-    return false;
-  }
-
-  private class Node {
+    private class Node {
     private int value;
     private Node next;
 
