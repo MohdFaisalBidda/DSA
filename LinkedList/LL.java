@@ -1,5 +1,7 @@
 package LinkedList;
 
+import Sort.BubbleSort.bubbleSort;
+
 public class LL {
   private Node head;
   private Node tail;
@@ -142,7 +144,7 @@ public class LL {
     return ans;
   }
 
-    private class Node {
+  private class Node {
     private int value;
     private Node next;
 
@@ -153,6 +155,71 @@ public class LL {
     public Node(int value, Node next) {
       this.value = value;
       this.next = next;
+    }
+  }
+
+  private void bubbleSort(int row, int col) {
+    if (row == 0) {
+      return;
+    }
+    if (col < row) {
+      Node first = get(col);
+      Node second = get(col + 1);
+
+      if (first.value > second.value) {
+        if (first == head) {
+          head = second;
+          first.next = head.next;
+          second.next = first;
+        } else if (second == tail) {
+          Node prev = get(col - 1);
+          prev.next = second;
+          tail = first;
+          first.next = null;
+          second.next = tail;
+        } else {
+          Node prev = get(col - 1);
+          prev.next = second;
+          first.next = second.next;
+          second.next = first;
+        }
+      }
+      bubbleSort(row, col + 1);
+    } else {
+      bubbleSort(row - 1, 0);
+    }
+  }
+
+  // Recursion Reverse
+
+  private void reverse(Node node) {
+    if (node == tail) {
+      head = tail;
+      return;
+    }
+    reverse(node.next);
+
+    tail.next = node;
+    tail = node;
+    tail.next = null;
+  }
+
+  public void reverseIterative() {
+    if (size < 2) {
+      return;
+    }
+    Node prev = null;
+    Node present = head;
+    Node next = present.next;
+
+    while (present != null) {
+      present.next = prev;
+      prev = present;
+      present = next;
+      if (next != null) {
+        next = next.next;
+      }
+      head = prev;
     }
   }
 
@@ -182,5 +249,13 @@ public class LL {
 
     LL ans = mergeLL(first, second);
     ans.display();
+
+    LL list = new LL();
+    for (int i = 5; i > 0; i--) {
+      list.insertLast(i);
+    }
+    list.display();
+    list.bubbleSort(5, 5);
+    list.display();
   }
 }
