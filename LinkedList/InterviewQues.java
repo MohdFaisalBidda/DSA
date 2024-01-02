@@ -32,6 +32,58 @@ public class InterviewQues {
         return prev;
     }
 
+    // https://leetcode.com/problems/rotate-list/
+    public ListNode rotateRight(ListNode head, int k) {
+        if (k <= 0 || head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode last = head;
+        int length = 1;
+        while (last.next != null) {
+            last = last.next;
+            length++;
+        }
+
+        last.next = head;
+        int rotation = k % length;
+        int size = length - rotation;
+        ListNode newEnd = head;
+
+        for (int i = 0; i < size - 1; i++) {
+            newEnd = newEnd.next;
+        }
+        head = newEnd.next;
+        newEnd.next = null;
+
+        return head;
+    }
+
+    // https://leetcode.com/problems/reorder-list/
+    public void reorderList(ListNode head) {
+        if (head == null && head.next == null) {
+            return;
+        }
+
+        ListNode mid = middleNode(head);
+        ListNode hs = reverseList(mid);
+        ListNode hf = head;
+
+        while (hf != null && hs != null) {
+            ListNode temp = hf.next;
+            hf.next = hs;
+            hf = temp;
+
+            temp = hs.next;
+            hs.next = hf;
+            hs = temp;
+        }
+        if (hf != null) {
+            hf.next = null;
+        }
+    }
+
+    // https://leetcode.com/problems/reverse-linked-list-ii/description/
     public boolean isPalindrome(ListNode head) {
         ListNode mid = middleNode(head);
         ListNode secondHead = reverseList(mid);
