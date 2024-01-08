@@ -17,4 +17,6 @@ public class Stackmain {
         System.out.println(stack.pop());
     }
 
+    
+
 }
